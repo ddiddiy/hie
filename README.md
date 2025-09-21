@@ -394,5 +394,23 @@ print(i)
 
 PRACTICAL - 9 (Flask application with pymongo)
 
-refer vs code (flask folder)
-```
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+mycl = pymongo MongoClient('mongodb://27017')
+mydb = mycli['tyit']
+mycol = mydb['employees']
+mydoc = mycol.fing_one({'name': 'shelly'})
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/<name>')
+def welcome(name):
+    name = mydoc['name']
+    return render_template('welcome.html', name=name, salary=mydoc['salary'])
+
+if __name__ == '__main__':
+    app.run(debug=True)
